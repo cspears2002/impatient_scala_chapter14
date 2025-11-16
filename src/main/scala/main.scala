@@ -1,15 +1,23 @@
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.io.File
+
 @main
 def main(): Unit = {
-  //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-  // to see how IntelliJ IDEA suggests fixing it.
-  (1 to 5).map(println)
+  val srcPath = File(System.getenv("JAVA_HOME") + "/src")
+  val files: List[File] = FileFinder.findFilesInDirectoryTree(srcPath)
+  val javaFiles: List[File] = files.filter(_.getPath.endsWith(".java"))
+  println(javaFiles)
+}
 
-  for (i <- 1 to 5) {
-    //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-    // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-    println(s"i = $i")
+object FileFinder {
+  def findFilesInDirectoryTree(directory: File): List[File] = {
+    if (!directory.exists || !directory.isDirectory) {
+      List.empty[File]
+    } else {
+      val files = directory.listFiles.toList
+      val (subdirectories, regularFiles) = files.partition(_.isDirectory)
+      regularFiles ++ subdirectories.flatMap(findFilesInDirectoryTree)
+    }
   }
 }
 
