@@ -22,8 +22,7 @@ def findCaseLabels(myFiles: List[File]): Unit = {
     val lines: Array[String] = Using(Source.fromFile(f))(source =>
       source.getLines.toArray).getOrElse(Array.empty[String])
     for line <- lines do {
-      // if casePattern.matches(line) then println(line)
-      if line.contains("case") then println(line)
+      if casePattern.findFirstIn(line).isDefined then println(line)
     }
   }
 }
