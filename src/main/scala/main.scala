@@ -15,10 +15,9 @@ def main(): Unit = {
 
 
 def findCaseLabels(myFiles: List[File]): Unit = {
-  val casePattern: Regex = """case [^:]+""".r
+  val casePattern: Regex = """case [^:]+:""".r
 
   for f <- myFiles do {
-    println(s"Processing file $f")
     val lines: Array[String] = Using(Source.fromFile(f))(source =>
       source.getLines.toArray).getOrElse(Array.empty[String])
     for line <- lines do {
