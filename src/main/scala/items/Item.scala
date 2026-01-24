@@ -20,3 +20,9 @@ package items:
             sum
 
         def description: String = bundleDesc
+
+
+    case class Multiple(numItems: Int, myItem: Item) extends Item:
+        override def description: String = myItem.description
+        override def price: Double = myItem.price * numItems
+
