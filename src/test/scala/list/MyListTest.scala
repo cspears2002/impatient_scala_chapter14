@@ -31,16 +31,27 @@ class MyListTest extends AnyFunSuite {
   test("Prepend a single element to a MyList") {
     val myList = MyList(List(1, 2, 3))
     val myListA = 0 :: myList
-    myListA == List(0, 1, 2, 3)
+    myListA == MyList(List(0, 1, 2, 3))
   }
-  test("Prepend a another MyList to a MyList") {
+  test("Prepend another MyList to a MyList") {
     val myList = MyList(List(1, 2, 3))
     val myList1 = MyList(List(-1, 0))
     val myListB = myList1 :: myList
-    myListB == List(-1, 0, 1, 2, 3)
+    myListB == MyList(List(-1, 0, 1, 2, 3))
   }
   test("Length returns number of items in a MyList") {
     val myList = MyList(List(1, 2, 3))
     myList.length == 3
+  }
+  test("Append a single element to a MyList") {
+    val myList = MyList(List(1, 2, 3))
+    val myListA = myList :+ 4
+    myListA == MyList(List(1, 2, 3, 4))
+  }
+  test("Append another MyList to a MyList") {
+    val myList1 = MyList(List(1, 2))
+    val myList2 = MyList(List(3, 4))
+    val combinedMyList = myList1 ++ myList2
+    combinedMyList == MyList(List(1, 2, 3, 4))
   }
 }
