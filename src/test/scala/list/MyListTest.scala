@@ -28,14 +28,17 @@ class MyListTest extends AnyFunSuite {
     val myList = MyList(List(1, 2, 3))
     myList.tail.contains(List(2, 3))
   }
-  test("Prepend an element to a MyList") {
+  test("Prepend a single element to a MyList") {
     val myList = MyList(List(1, 2, 3))
     val myListA = 0 :: myList
 
+    myListA == List(0, 1, 2, 3)
+  }
+  test("Prepend a another MyList to a MyList") {
+    val myList = MyList(List(1, 2, 3))
     val myList1 = MyList(List(-1, 0))
     val myListB = myList1 :: myList
-
-    myListA == List(0, 1, 2, 3)
+    
     myListB == List(-1, 0, 1, 2, 3)
   }
 }
