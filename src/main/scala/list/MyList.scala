@@ -7,3 +7,4 @@ case class MyList[T](list: List[T]):
   def tail: List[T] = list.drop(1)
   def ::(elem: T): List[T] = elem::list
   def ::(elem: MyList[T]): List[Any] = elem::list
+  def length: Int = list.length
