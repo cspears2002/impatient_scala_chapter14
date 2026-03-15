@@ -6,6 +6,7 @@ case class MyList[T](list: List[T]):
   def head: Option[T] = list.headOption
   def tail: List[T] = list.drop(1)
   def length: Int = list.length
+  def map[B](f: T => B): MyList[B] = MyList(list.map(f))
 
   // Prepend element
   def ::(elem: T): MyList[T] = MyList(elem::list)

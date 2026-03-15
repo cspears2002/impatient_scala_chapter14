@@ -54,4 +54,9 @@ class MyListTest extends AnyFunSuite {
     val combinedMyList = myList1 ++ myList2
     combinedMyList == MyList(List(1, 2, 3, 4))
   }
+  test("Use a map to return a new MyList") {
+    val myListOfInts = MyList(List(1, 2, 3))
+    val myListOfFloats = myListOfInts.map(_ * 2.0)
+    myListOfFloats == MyList(List(2.0, 4.0, 6.0))
+  }
 }
