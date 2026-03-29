@@ -15,3 +15,7 @@ enum MyListEnum[+T]:
   def append[U >: T](other: MyListEnum[U]): MyListEnum[U] = this match
     case Empty => other
     case NonEmpty(h, t) => NonEmpty(h, t.append(other))
+
+  def map[R](f: T => R): MyListEnum[R] = this match
+    case Empty => Empty
+    case NonEmpty(h, t) => NonEmpty(f(h), t.map(f))

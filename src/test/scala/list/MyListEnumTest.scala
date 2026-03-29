@@ -42,5 +42,16 @@ class MyListEnumTest extends AnyFunSuite {
     val list = 1 :: 2 :: Empty
     assert(Empty.append(list) == list)
   }
-  
+
+  test("map should transform elements and change types if needed") {
+    val ints = 1 :: 2 :: 3 :: Empty
+
+    // Square the numbers
+    val squared = ints.map(x => x * x)
+    assert(squared == 1 :: 4 :: 9 :: Empty)
+
+    // Transform Int to String
+    val strings = ints.map(x => s"Num $x")
+    assert(strings == "Num 1" :: "Num 2" :: "Num 3" :: Empty)
+  }
 }
