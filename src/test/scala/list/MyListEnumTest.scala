@@ -26,5 +26,21 @@ class MyListEnumTest extends AnyFunSuite {
     val list = 1 :: "Two" :: 3.0 :: Empty
     assert(list.length == 3)
   }
+
+  test("append should join two lists correctly") {
+    val list1 = 1 :: 2 :: Empty
+    val list2 = 3 :: 4 :: Empty
+    val result = list1.append(list2)
+
+    assert(result.length == 4)
+    // Verifying structure: 1 -> 2 -> 3 -> 4
+    val expected = NonEmpty(1, NonEmpty(2, NonEmpty(3, NonEmpty(4, Empty))))
+    assert(result == expected)
+  }
+
+  test("appending to Empty should return the other list") {
+    val list = 1 :: 2 :: Empty
+    assert(Empty.append(list) == list)
+  }
   
 }
